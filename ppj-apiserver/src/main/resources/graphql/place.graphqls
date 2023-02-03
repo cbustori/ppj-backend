@@ -1,0 +1,86 @@
+enum PlaceTypeEnum {
+  RESTAURANT
+  HOTEL
+  PUB
+  OFFICE
+}
+
+enum PlaceStatusEnum {
+  PENDING
+  CONFIRMED
+  REFUSED
+}
+
+type Address {
+	street: String!
+	zipCode: String!
+	city: String!
+	country: String
+	location: GeoJsonPoint!
+	icon: String
+}
+
+interface Place {
+	id: ID!
+	googlePlaceId: String!
+	name: String!
+	address: Address!
+	phoneNumber: String!
+	type: PlaceTypeEnum!
+	tags: [String]
+	pictures: [CloudinaryPicture]
+	website: String
+	status: PlaceStatusEnum
+}
+
+type Restaurant implements Place {
+	id: ID!
+	googlePlaceId: String!
+	name: String!
+	address: Address!
+	phoneNumber: String!
+	type: PlaceTypeEnum!
+	tags: [String]
+	pictures: [CloudinaryPicture]
+	website: String
+	status: PlaceStatusEnum
+}
+
+type Hotel implements Place {
+	id: ID!
+	googlePlaceId: String!
+	name: String!
+	address: Address!
+	phoneNumber: String!
+	type: PlaceTypeEnum!
+	tags: [String]
+	pictures: [CloudinaryPicture]
+	website: String
+	status: PlaceStatusEnum
+}
+
+type Office implements Place {
+	id: ID!
+	googlePlaceId: String!
+	name: String!
+	address: Address!
+	phoneNumber: String!
+	type: PlaceTypeEnum!
+	tags: [String]
+	pictures: [CloudinaryPicture]
+	website: String
+	status: PlaceStatusEnum
+}
+
+type Pub implements Place {
+	id: ID!
+	googlePlaceId: String!
+	name: String!
+	address: Address!
+	phoneNumber: String!
+	type: PlaceTypeEnum!
+	tags: [String]
+	pictures: [CloudinaryPicture]
+	website: String
+	status: PlaceStatusEnum
+}

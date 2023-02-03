@@ -1,0 +1,12 @@
+enum PlanningViewEnum {
+	DAY
+	WEEK
+	MONTH
+}
+
+type Scheduler {
+	id: ID
+	availableOn: Date!
+	event: Event!
+	place: Place!
+}

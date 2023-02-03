@@ -1,0 +1,20 @@
+type GooglePlace {
+	placeId: ID
+	name: String
+}
+
+type GooglePlaceDetails {
+	placeId: ID
+	name: String
+	vicinity: String
+	postalCode: String
+	city: String
+	country: String
+	icon: String
+	formattedAddress: String
+	geometry: GeoJsonPoint
+	phoneNumber: String
+	priceLevel: Int
+	openingHours: String
+	website: String
+}

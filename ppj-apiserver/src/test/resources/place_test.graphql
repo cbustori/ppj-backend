@@ -1,0 +1,7 @@
+query {
+  place(id:"5da1a4c6c880e62410d942b8") {
+  	id
+    name
+    __typename
+  }
+}

@@ -1,0 +1,16 @@
+type CloudinaryPicture {
+	publicId: String!
+	url: String!
+}
+
+enum EventDateFilterEnum {
+  TODAY
+  TOMORROW
+  SOON
+}
+
+enum SharingPlatformEnum {
+	FACEBOOK
+	TWITTER
+	INSTAGRAM
+}

@@ -1,0 +1,8 @@
+package com.enrealit.ppj.shared.enums;
+
+public enum TypeException {
+
+	ACCESS_DENIED, NOT_AUTHORIZED, EVENT_NOT_CREATED, EVENT_NOT_FOUND, PLACE_NOT_CREATED, PLACE_NOT_FOUND,
+	TAG_NOT_FOUND, USER_NOT_FOUND;
+
+}

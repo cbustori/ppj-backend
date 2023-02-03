@@ -1,0 +1,29 @@
+scalar GeoJsonPoint
+scalar Date
+scalar FileUpload
+
+type Query {
+	eventsAroundMe(position: [Float!]!, availableOn: EventDateFilterEnum!, start: Int!, limit: Int!, filters: EventFiltersInput): [Scheduler]
+	schedule(availableOn: Date!, view: PlanningViewEnum): [Scheduler]
+	events: [Event]
+	event(id: ID!): Scheduler
+	place(id: ID!): Place
+	me: User
+	searchPlaces(search: String!): [GooglePlace]
+	placeDetails(placeId: String!): GooglePlaceDetails
+	accounts: [TypeAccount]
+	tags(label: String!): [String]
+}
+
+type Mutation {
+	addContributor(placeId: ID!, contribEmail: String!): User
+  	createPlace(place: PlaceInput!, files: [FileUpload!]): Place
+  	createEvent(event: EventInput!, files: [FileUpload!]): Event
+  	likePlace(placeId: ID!): User
+  	#likeEvent(eventId: ID!): User
+  	updateProfile(user: UserInput!, profilePicture: FileUpload): User
+  	setUserFirstConnection: User	
+  	deleteEvent(eventId: ID!) : Boolean
+  	deletePicture(publicId: String!): Boolean
+  	schedule(inputs: [SchedulerItemInput!]!): [Scheduler]
+}

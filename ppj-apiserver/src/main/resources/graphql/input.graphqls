@@ -1,0 +1,62 @@
+input CloudinaryPictureInput {
+	publicId: String!
+	url: String!
+}
+
+input AddressInput {
+	street: String!
+	zipCode: String!
+	city: String!
+	country: String!
+	location: [Float!]
+	icon: String
+}
+
+input UserInput {
+	email: String!
+	password: String
+	lastName: String!
+	firstName: String
+	phoneNumber: String!
+}
+
+input PlaceInput {
+	placeId: ID
+	type: PlaceTypeEnum!
+	googlePlaceId: String!
+	businessName: String!
+	status: PlaceStatusEnum!
+	address: AddressInput!
+	phoneNumber: String!
+	tags: [String]
+	pictures: [CloudinaryPictureInput]
+	website: String
+}
+
+input EventFiltersInput {
+	minPrice: Float
+	maxPrice: Float
+	placeType: PlaceTypeEnum
+	tags: [String]
+	distanceInKms: Float
+}
+
+input EventInput {
+	eventId: ID
+	type: EventTypeEnum!
+	title: String!
+	description: String!
+	tags: [String]
+	pictures: [CloudinaryPictureInput]
+}
+
+extend input EventInput {
+	price: Float!
+}
+
+input SchedulerItemInput {
+	id: ID
+	availableOn: Date!
+	event: ID!
+	place: ID!
+}

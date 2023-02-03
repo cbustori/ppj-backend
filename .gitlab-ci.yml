@@ -1,0 +1,56 @@
+image: docker:latest
+
+stages:
+  - build
+  - package
+  - deploy
+  
+maven-build:
+  only:
+    - master      
+  image: maven:3-jdk-8
+  stage: build
+  script: "mvn package -B -DskipTests"
+  artifacts:
+    paths:
+      - ppj-apiserver/target/*.jar
+
+nexus-package:
+  only:
+    - master      
+  image: maven:3-jdk-8
+  stage: package
+  script: "mvn -s m2_setting.xml deploy -B -DskipTests"
+
+docker-package:
+  stage: package
+  only:
+    - master
+  image:
+    name: gcr.io/kaniko-project/executor:debug
+    entrypoint: [""]
+  script:
+    - echo "{\"auths\":{\"$REGISTRY_URL\":{\"username\":\"$REGISTRY_USER\",\"password\":\"$REGISTRY_PWD\"}}}" > /kaniko/.docker/config.json
+    - /kaniko/executor --context=$CI_PROJECT_DIR --dockerfile $CI_PROJECT_DIR/Dockerfile --destination $REGISTRY_URL_NO_HTTPS/ppjbackend:$TAG
+    
+
+deploy-dev:
+  stage: deploy
+  image: debian:buster-slim
+  only:
+    - master
+  script:
+    - apt-get update && apt-get install -y sshpass
+    - sshpass -p $USER_PASS ssh -o StrictHostKeyChecking=no -p $PORT $USER@$URL_DEV 'cd /opt/app/ppj-backend/docker-compose/ && docker-compose down && docker-compose pull && docker-compose up -d'
+    
+prod-k8s-deploy:
+  image: google/cloud-sdk
+  stage: deploy
+  when: manual
+  script:
+  - echo "$GOOGLE_KEY" > key.json
+  - gcloud auth activate-service-account --key-file key.json
+  - gcloud config set compute/zone europe-west1-d
+  - gcloud config set project ppj-project
+  - gcloud container clusters get-credentials ppj-cluster --zone europe-west1-d --project ppj-project
+  - kubectl apply -f deployment.yaml

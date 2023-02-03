@@ -1,0 +1,19 @@
+enum AccountTypeEnum {
+	PRO
+	PRO_PLUS
+	PREMIUM
+}
+
+type TypeAccount {
+	type: AccountTypeEnum!
+	typeEvents: [EventTypeEnum]
+	maxEtabs: Int
+	planningView: PlanningViewEnum
+	maxContributors: Int
+	maxEvents: Int
+	eventPromotingPrice: Float
+	notificationPrice: Float
+	sharingPlatforms: [SharingPlatformEnum]
+	advancedPlanificationAccess: Boolean
+	advancedCalendarAccess: Boolean
+}

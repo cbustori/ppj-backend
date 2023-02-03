@@ -1,0 +1,44 @@
+enum EventTypeEnum {
+  DISH_OF_THE_DAY
+  HAPPY_HOUR
+  CONCERT
+}
+
+interface Event {
+	id: ID!
+	type: EventTypeEnum!
+	title: String
+	description: String
+	tags: [String]
+	pictures: [CloudinaryPicture]
+}
+
+type Dish implements Event {
+	id: ID!
+	type: EventTypeEnum!
+	title: String
+	description: String
+	tags: [String]
+	pictures: [CloudinaryPicture]
+	price: Float
+}
+
+type HappyHour implements Event {
+	id: ID!
+	type: EventTypeEnum!
+	title: String
+	description: String
+	tags: [String]
+	startingTime: Date
+	endingTime: Date
+	pictures: [CloudinaryPicture]
+}
+
+type Concert implements Event {
+	id: ID!
+	type: EventTypeEnum!
+	title: String
+	description: String
+	tags: [String]
+	pictures: [CloudinaryPicture]
+}

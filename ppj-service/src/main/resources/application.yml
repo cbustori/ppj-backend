@@ -1,0 +1,53 @@
+root:
+  accounts:
+    -
+      type: PRO
+      typeEvents:
+        - DISH_OF_THE_DAY
+      maxEtabs: 1
+      planningView: WEEK
+      maxContributors: 0
+      maxEvents: 3
+      eventPromotingPrice: 1.5
+      notificationPrice: 5
+      sharingPlatforms:
+        - FACEBOOK
+        - TWITTER
+      advancedPlanificationAccess: false
+      advancedCalendarAccess: false
+      
+    -
+      type: PRO_PLUS
+      typeEvents:
+        - DISH_OF_THE_DAY
+        - CONCERT
+        - HAPPY_HOUR
+      maxEtabs: 3
+      planningView: MONTH
+      maxContributors: 1
+      maxEvents: 10
+      eventPromotingPrice: 1.5
+      notificationPrice: 5
+      sharingPlatforms:
+        - FACEBOOK
+        - TWITTER
+      advancedPlanificationAccess: true
+      advancedCalendarAccess: true
+      
+    -
+      type: PREMIUM
+      typeEvents:
+        - DISH_OF_THE_DAY
+        - CONCERT
+        - HAPPY_HOUR
+      maxEtabs: 10
+      planningView: MONTH
+      maxContributors: 5
+      maxEvents: 10
+      eventPromotingPrice: 0
+      notificationPrice: 5
+      sharingPlatforms:
+        - FACEBOOK
+        - TWITTER
+      advancedPlanificationAccess: true
+      advancedCalendarAccess: true

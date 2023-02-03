@@ -1,0 +1,18 @@
+version: '3.5'
+services:
+  ppjbackend:
+    image: registry.enrealit.fr/ppjbackend:0.1
+    container_name: ppjbackend
+    restart: always
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+    networks:
+      - ppjbackend
+    ports:
+      - 40027:40027
+    environment:
+      - "SPRING_PROFILES_ACTIVE=dev"
+
+networks: 
+  ppjbackend:
+    name: ppjbackend_network

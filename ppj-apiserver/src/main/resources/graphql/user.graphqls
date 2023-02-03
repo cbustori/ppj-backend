@@ -1,0 +1,40 @@
+enum ManagedPlaceRoleEnum {
+  MANAGER
+  CONTRIBUTOR
+}
+
+enum UserTypeEnum {
+  SUBSCRIBER
+  MANAGER
+  CONTRIBUTOR
+  ADMIN
+}
+
+enum UserStatus {
+	EMAIL_TO_BE_CONFIRMED
+  	RESTAURANT_TO_BE_CONFIRMED
+  	USER_FIRST_CONNECTION
+  	USER_CONFIRMED
+  	WAITING_FOR_VALIDATION
+}
+
+type ManagedPlace {
+	place: Place
+	role: ManagedPlaceRoleEnum
+}
+
+type User {
+	id: ID!
+	firstName: String
+	name: String!
+	email: String!
+	address: Address
+	type: UserTypeEnum
+	userStatus: UserStatus
+	phoneNumber: String
+	backgroundPicture: CloudinaryPicture
+	profilePicture: CloudinaryPicture
+	managedPlaces: [ManagedPlace]
+	favoritePlaces: [Place]
+	favoriteEvents: [Event]
+}

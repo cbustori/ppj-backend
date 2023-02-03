@@ -1,0 +1,35 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: ppj-backend
+spec:
+  ports:
+  - port: 80
+    targetPort: 40027
+  selector:
+    app: ppj-backend
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ppj-backend
+spec:
+  selector:
+    matchLabels:
+      app: ppj-backend
+  template:
+    metadata:
+      labels:
+        app: ppj-backend
+    spec:
+      containers:
+      - name: ppj-auth
+        image: registry.enrealit.fr/ppjbackend:0.1
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 40027
+        env:
+        - name: SPRING_PROFILES_ACTIVE
+          value: "prod"
+      imagePullSecrets:
+        - name: registry.enrealit.fr
